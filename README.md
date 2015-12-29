@@ -11,6 +11,6 @@ Install:<br>
 	1.首先你应该具备django运行环境，请自行安装<br>
 	2.安装mysql建议mysql版本5.6(不要忘记python-MySQLdb)<br>
 	3.安装相关框架：<br>
-	amp;pip install -r requirements.txt<br>
+	$pip install -r requirements.txt<br>
 	4.搜集静态文件到 settings.STATIC_ROOT 文件夹:<br>
-	amp;$ python manage.py collectstatic
+	$ python manage.py collectstatic
