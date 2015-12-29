@@ -1,0 +1,128 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!--header-->			
+<div class="header">  
+	 <div class="container">
+		  <div class="logo">
+			  <a href="{% url 'blog.views.index' %}"><img src="{% static "images/logo.png" %}" title="" /></a>
+		  </div>
+			 <!--start-top-nav-->
+			 <div class="top-menu">
+				 <div class="search">
+					 <form  action="{% url 'blog.views.search' %}" method="get">
+					 <input type="text" placeholder="" required="" name="keywords">
+					 <input type="submit" value=""/>
+					 </form>
+				 </div>
+				  <span class="menu"> </span> 
+				   <ul>
+						<li  class="active"><a href="{%url 'blog.views.index'%}">HOME</a></li>						
+						<li><a href="{% url 'blog.views.about' %}">ABOUT</a></li>	
+						<li><a href="{% url 'blog.views.contact' %}">CONTACT</a></li>						
+						<div class="clearfix"> </div>
+				 </ul>
+			 </div>
+			 <div class="clearfix"></div>
+					<script>
+					$("span.menu").click(function(){
+					$(".top-menu ul").slideToggle("slow" , function(){
+						});
+					});
+					</script>
+				<!--//End-top-nav-->				
+	 </div>
+</div>
+<!--/header-->
+	<div class="content">
+	 <div class="container">
+		 <div class="content-grids">
+			 <div class="col-md-8 content-main">
+				 <div class="content-grid">	
+				{% if posts.object_list %}
+				 	{% for post in posts.object_list %}
+					 <div class="content-grid-info">
+						 {# <img src="images/post3.jpg" alt=""/> #}
+						 <div class="post-info">
+						 <h4><a href="{% url 'blog.views.post_detail' id=post.id %}">{{ post.title }}</a>{{ post.published_date }}</h4>
+						 <p>{{ post.context|truncatechars:240|linebreaks }}</p>
+						 <a href="{% url 'blog.views.post_detail' id=post.id %}"><span></span>READ MORE</a>
+						 </div>
+					 </div>
+					 {% endfor %}
+				{% else %}
+					 <div class="content-grid-info">
+					 {# <img src="images/post3.jpg" alt=""/> #}
+					 	<div class="post-info">
+					 	<h4><a href="{% url 'blog.views.index' %}">sorry,not found!</a></h4>
+					 	</div>
+					</div>	 	
+				{% endif %}				 
+
+				 </div>
+
+			  </div>
+			  <div class="col-md-4 content-right">
+				 <div class="recent">
+					 <h3>PAST POSTS</h3>
+					 <ul>
+					 <li><a href="#">Aliquam tincidunt mauris</a></li>
+					 <li><a href="#">Vestibulum auctor dapibus  lipsum</a></li>
+					 <li><a href="#">Nunc dignissim risus consecu</a></li>
+					 <li><a href="#">Cras ornare tristiqu</a></li>
+					 </ul>
+				 </div>
+				 <div class="categories">
+				 	 <h3>CATEGORIES</h3>
+					 <ul>
+					 {% for category in categories  %}
+					 	<li><a href="{% url 'blog.views.index' cid=category.id %}">{{category.category_name}}</a></li>
+					 {% endfor %}
+					 </ul>
+				 </div>
+				 <div class="clearfix"></div>
+				 <div class="archives">
+					 <h3>ARCHIVES</h3>
+					 <ul>
+					 <li><a href="#">October 2013</a></li>
+					 <li><a href="#">September 2013</a></li>
+					 <li><a href="#">August 2013</a></li>
+					 <li><a href="#">July 2013</a></li>
+					 </ul>
+				 </div>
+				 <div class="comments">
+					 <h3>LINKS</h3>
+					 <ul>
+					 {% for link in links %}
+					 	<li><a href="{{link.link_url}}">{{link.link_title}}</a>
+					 {% endfor %}
+					 </ul>
+				 </div>
+				 <div class="clearfix"></div>
+			  </div>
+			  <div class="clearfix"></div>
+		  </div>
+	  </div>
+	  <div class="pagination-ul">
+		<ul class="pagination">
+		{% if posts.has_previous %}
+			<li><a href="?keywords={{keywords}}&page={{posts.previous_page_number}}">&laquo;</a></li>
+		{% else %}
+			<li><a href="#">&laquo;</a></li>
+		{% endif %}
+		{% for p in page_range %}
+			{% ifequal p posts.number  %} 
+				<li class="active"><a>{{p}}</a></li>
+			{% else %}
+				<li><a href="?keywords={{keywords}}&page={{p}}">{{p}}</a></li>
+			{% endifequal %}	
+		{% endfor %}
+		{% if posts.has_next %}
+			<li><a href="?keywords={{keywords}}&page={{posts.next_page_number}}">&raquo;</a></li>
+		{% else %}
+			<li><a href="#">&raquo;</a></li>
+		{% endif %}
+		</ul>
+	</div>
+</div>
+{% endblock content %}
