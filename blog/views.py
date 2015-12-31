@@ -33,14 +33,15 @@ def contact(request):
 def search(request):
 	links = Links.objects.all();
 	categories = Category.objects.all();
+	posts_recent = Post.objects.order_by('-published_date')[:5];
 	if request.GET:
 		keywords = str(request.GET['keywords']);
 		page = request.GET.get('page',1);
 		posts = Post.objects.filter(title__icontains=keywords).order_by('-published_date');
 		if posts:
 			posts,page_range = app.blog_page(posts,page=page);
-			return render(request,'blog/search.html',{'posts':posts,'page_range':page_range,'keywords':keywords,'links':links,'categories':categories});
+			return render(request,'blog/search.html',{'posts':posts,'page_range':page_range,'keywords':keywords,'links':links,'categories':categories,'posts_recent':posts_recent});
 		else:
 			posts = [];
 			page_range = [1];
-			return render(request,'blog/search.html',{'posts':posts,'page_range':page_range,'links':links,'categories':categories});
+			return render(request,'blog/search.html',{'posts':posts,'page_range':page_range,'links':links,'categories':categories,'posts_recent':posts_recent});
