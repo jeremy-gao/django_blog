@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^page/(?P<page>\d+)/$',views.index),
     url(r'^cname/(?P<cid>\d+)/$',views.index),
     url(r'^page/(?P<page>\d+)/cname/(?P<cid>\d+)/$',views.index),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^ueditor/',include('DjangoUeditor.urls' )),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

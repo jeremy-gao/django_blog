@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from DjangoUeditor.models import UEditorField
 # Create your models here.
 
 
@@ -12,7 +13,8 @@ class Category(models.Model):
 
 class Post(models.Model):
 	title = models.CharField(max_length=200);
-	context = models.TextField();
+	# context = models.TextField();
+	context = UEditorField(width='full',imagePath='images/');
 	author = models.CharField(max_length=20);
 	published_date = models.DateTimeField(default=timezone.now);
 	tag = models.CharField(max_length=12);
@@ -28,5 +30,3 @@ class Links(models.Model):
 
 	def __unicode__(self):
 		return self.link_title;
-
-

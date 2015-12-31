@@ -98,7 +98,7 @@ padding-left:0;
 width: 66.6667%;
 }
 .content-grids {
-margin-top: 4em;
+margin-top: 3em;
 }
 /*分页*/
 .pagination-ul{
@@ -222,7 +222,7 @@ font-weight: 400;
 color:#7C7C7C;
 font-size: 0.9em;
 border-bottom:none;
-margin:0 5px;
+margin:0 8px;
 font-family: 'Lato', sans-serif;
 }
 .recent li a:hover,.comments ul li a:hover,.archives ul li a:hover,.categories ul li a:hover{
@@ -248,7 +248,7 @@ padding:2em 0;
 }
 .about-content h2{
 color:#00aeff;
-font-size:2em;
+font-size:1.6em;
 }
 .about-grid2,.about-grid,.who-iam{
 margin-top:2em;

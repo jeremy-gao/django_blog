@@ -8,4 +8,4 @@ from django.conf import settings
 urlpatterns = [
     url(r'^$',views.index),
     url(r'^post/(?P<pk>[0-9]+)/$',views.post_detail),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]

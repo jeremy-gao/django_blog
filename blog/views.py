@@ -5,7 +5,7 @@ from blog.app import app
 # Create your views here.
 
 def index(request,page=1,cid=0):
-	cid = int(cid)
+	cid = int(cid);
 	links = Links.objects.all();
 	categories = Category.objects.all();
 	if cid > 0:
@@ -13,11 +13,16 @@ def index(request,page=1,cid=0):
 	else:
 		posts = Post.objects.order_by('-published_date');
 	posts,page_range = app.blog_page(posts,page=page);
-	return render(request,'blog/index.html',{'posts':posts,'page_range':page_range,'links':links,'categories':categories,'cid':cid});
+	posts_recent = Post.objects.order_by('-published_date')[:5];
+	dict = {'posts':posts,'page_range':page_range,'links':links,'categories':categories,'cid':cid,'posts_recent':posts_recent};
+	return render(request,'blog/index.html',dict);
 
 def post_detail(request,id):
 	post = get_object_or_404(Post, id = id);
-	return render(request,'blog/single.html',{'post':post});
+	posts_recent = Post.objects.order_by('-published_date')[:5];
+	links = Links.objects.all();
+	categories = Category.objects.all();
+	return render(request,'blog/single.html',{'post':post,'posts_recent':posts_recent,'categories':categories,'links':links});
 
 def about(request):
 	return render(request,'blog/about.html',{});
