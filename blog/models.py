@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from DjangoUeditor.models import UEditorField
+from django.contrib import admin
 # Create your models here.
 
 
@@ -26,7 +27,6 @@ class Post(models.Model):
 class Links(models.Model):
 	link_title = models.CharField(max_length=40);
 	link_url = models.CharField(max_length=40);
-
 
 	def __unicode__(self):
 		return self.link_title;
