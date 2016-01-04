@@ -13,4 +13,8 @@ Install:<br>
 	3.安装相关框架：<br>
 	$pip install -r requirements.txt<br>
 	4.搜集静态文件到 settings.STATIC_ROOT 文件夹:<br>
-	$ python manage.py collectstatic
+	$ python manage.py collectstatic<br>
+
+---------------------notice------------ <br>
+如果后台编辑器,不能上传文件请
+确认是否有media目录，并且给与写入的权限

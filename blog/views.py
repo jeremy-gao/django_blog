@@ -35,7 +35,7 @@ def search(request):
 	categories = Category.objects.all();
 	posts_recent = Post.objects.order_by('-published_date')[:5];
 	if request.GET:
-		keywords = str(request.GET['keywords']);
+		keywords = str(request.GET['keywords'].encode("utf-8"));
 		page = request.GET.get('page',1);
 		posts = Post.objects.filter(title__icontains=keywords).order_by('-published_date');
 		if posts:
