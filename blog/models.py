@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from DjangoUeditor.models import UEditorField
-from django.contrib import admin
 # Create your models here.
 
 
