@@ -41,12 +41,13 @@
 			 <p>欢迎对本博客和博文提出意见，请按如下格式填写，邮件将发送至我的私人邮箱，联系方式如右下角，谢谢!</p>
 		     </div>
 			 <div class="contact-details">				 
-			 <form>
-				 <input type="text" placeholder="Name" required/>
-				 <input type="text" placeholder="Email" required/>
-				 <input type="text" placeholder="Phone" required/>
-				 <input type="text" placeholder="City Name" required/>
-				 <textarea placeholder="Message"></textarea>
+			 <form method="post" action="{% url 'blog.views.contact' %}">
+			 	{% csrf_token %}
+				 {{form.name}}
+				 {{form.email}}
+				 {{form.phone}}
+				 {{form.city}}
+				 {{form.message}}
 				 <input type="submit" value="SEND"/>
 			 </form>
 		  </div>

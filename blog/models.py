@@ -29,3 +29,13 @@ class Links(models.Model):
 
 	def __unicode__(self):
 		return self.link_title;
+
+class Contact(models.Model):
+	name = models.CharField(max_length = 20,blank=False);
+	email = models.EmailField(max_length = 20,blank=False);
+	phone = models.CharField(max_length = 11);
+	city = models.CharField(max_length = 20);
+	message = models.TextField(blank=False);
+
+	def __unicode__(self):
+		return self.name;

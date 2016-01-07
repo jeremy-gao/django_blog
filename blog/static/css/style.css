@@ -315,7 +315,7 @@ line-height: 1.8em;
 font-weight: 400;
 margin-bottom: 1em;
 }
-.contact-details form input[type="text"], .contact-details textarea {
+.contact-details form input[type="text"],input[type="email"], .contact-details textarea {
 width: 47%;
 margin-right: 4%;
 padding: 12px;

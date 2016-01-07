@@ -2,7 +2,8 @@ from django.shortcuts import render,get_object_or_404
 from blog.models import Post,Links,Category
 from blog.app import app
 from django.db.models import Q
-
+from blog.form import ContactForm
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def index(request,page=1,cid=0):
@@ -28,8 +29,14 @@ def post_detail(request,id):
 def about(request):
 	return render(request,'blog/about.html',{});
 
-def contact(request):
-	return render(request,'blog/contact.html',{});
+def contact(request,**kwargs):
+	form = ContactForm(auto_id=False);
+	if request.POST:
+		form = ContactForm(request.POST);
+		if form.is_valid():
+			form.save();
+			return HttpResponseRedirect('/index.html');
+	return render(request,'blog/contact.html',{'form':form});
 
 def search(request):
 	links = Links.objects.all();
