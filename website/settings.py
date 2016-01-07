@@ -133,3 +133,8 @@ STATIC_ROOT = os.path.join(BLOG_DIR,'static')
 ##medis dir###
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BLOG_DIR, "media")
+##
+SUIT_CONFIG = {
+    #header
+    'ADMIN_NAME': 'Django Blog'
+}
