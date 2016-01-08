@@ -138,3 +138,16 @@ SUIT_CONFIG = {
     #header
     'ADMIN_NAME': 'Django Blog'
 }
+
+##file cache##
+CACHE_ROOT = os.path.join(BLOG_DIR,'media/cache');
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': CACHE_ROOT,
+        'TIMEOUT': 600,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}

@@ -4,8 +4,10 @@ from blog.app import app
 from django.db.models import Q
 from blog.form import ContactForm
 from django.http import HttpResponseRedirect
+from django.views.decorators.cache import cache_page
 # Create your views here.
 
+@cache_page(60 * 15)
 def index(request,page=1,cid=0):
 	cid = int(cid);
 	links = Links.objects.all();
@@ -19,6 +21,7 @@ def index(request,page=1,cid=0):
 	dict = {'posts':posts,'page_range':page_range,'links':links,'categories':categories,'cid':cid,'posts_recent':posts_recent};
 	return render(request,'blog/index.html',dict);
 
+@cache_page(60 * 30)
 def post_detail(request,id):
 	post = get_object_or_404(Post, id = id);
 	posts_recent = Post.objects.order_by('-published_date')[:5];
