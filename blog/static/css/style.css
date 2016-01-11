@@ -315,7 +315,7 @@ line-height: 1.8em;
 font-weight: 400;
 margin-bottom: 1em;
 }
-.contact-details form input[type="text"],input[type="email"], .contact-details textarea {
+.contact-details form input[type="text"],form input[type="email"], .contact-details textarea {
 width: 47%;
 margin-right: 4%;
 padding: 12px;
@@ -333,13 +333,13 @@ transition: 0.5s all ease;
 -o-transition: 0.5s all ease;
 -ms-transition: 0.5s all ease;
 }
-.contact-details form input[type="text"]:hover, .contact-details textarea:hover{
+.contact-details form input[type="text"]:hover, form input[type="email"]:hover, .contact-details textarea:hover{
 border: 1px solid #00aeff;
 }
 .contact-details textarea {
 resize: none;
 height: 200px;
-width: 98%;
+width: 94.5%;
 margin-right: 0%;
 }
 .contact-details form input[type="text"]:nth-child(2),.contact-details form input[type="text"]:nth-child(4){
