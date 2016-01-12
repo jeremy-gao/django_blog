@@ -5,6 +5,7 @@ from django.db.models import Q
 from blog.form import ContactForm
 from django.http import HttpResponseRedirect
 from django.views.decorators.cache import cache_page
+from django.conf import settings
 # Create your views here.
 
 @cache_page(60 * 15)
@@ -18,7 +19,8 @@ def index(request,page=1,cid=0):
 		posts = Post.objects.order_by('-published_date');
 	posts,page_range = app.blog_page(posts,page=page);
 	posts_recent = Post.objects.order_by('-published_date')[:5];
-	dict = {'posts':posts,'page_range':page_range,'links':links,'categories':categories,'cid':cid,'posts_recent':posts_recent};
+	site_url = settings.SITE_URL;
+	dict = {'posts':posts,'page_range':page_range,'links':links,'categories':categories,'cid':cid,'posts_recent':posts_recent,'site_url':site_url};
 	return render(request,'blog/index.html',dict);
 
 @cache_page(60 * 30)
@@ -27,7 +29,8 @@ def post_detail(request,id):
 	posts_recent = Post.objects.order_by('-published_date')[:5];
 	links = Links.objects.all();
 	categories = Category.objects.all();
-	return render(request,'blog/single.html',{'post':post,'posts_recent':posts_recent,'categories':categories,'links':links});
+	site_url = settings.SITE_URL;
+	return render(request,'blog/single.html',{'post':post,'posts_recent':posts_recent,'categories':categories,'links':links,'site_url':site_url});
 
 def about(request):
 	return render(request,'blog/about.html',{});

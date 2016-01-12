@@ -151,3 +151,6 @@ CACHES = {
         }
     }
 }
+###site url###
+SITE_URL='http://blog.sosolinux.com'
+SITE_NAME='Blog site'
