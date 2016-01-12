@@ -45,7 +45,7 @@
 						 {# <img src="images/post3.jpg" alt=""/> #}
 						 <div class="post-info">
 						 <h4><a href="{% url 'blog.views.post_detail' id=post.id %}">{{ post.title }}</a>{{ post.published_date|date }}</h4>
-						 <p>{{ post.context|truncatechars:280|removetags:'p'|safe }}</p>
+						 <p>{{ post.context|truncatechars:240|removetags:'p'|safe }}</p>
 						 <a href="{% url 'blog.views.post_detail' id=post.id %}"><span></span>READ MORE</a>
 						 </div>
 					 </div>
@@ -67,7 +67,7 @@
 					 <h3>RECENT POSTS</h3>
 					 <ul>
 					 {% for post in posts_recent %}
-					 	<li><a href="{% url 'blog.views.post_detail' id=post.id %}">{{ post.title|truncatechars:16 }}</a></li>
+					 	<li><a href="{% url 'blog.views.post_detail' id=post.id %}">{{ post.title|truncatechars:13 }}</a></li>
 					 {% endfor %}
 					 </ul>
 				 </div>

@@ -60,7 +60,7 @@
 					 <h3>RECENT POSTS</h3>
 					 <ul>
 					 {% for post in posts_recent %}
-					 	<li><a href="{{site_url}}{% url 'blog.views.post_detail' id=post.id %}">{{ post.title|truncatechars:16 }}</a></li>
+					 	<li><a href="{{site_url}}{% url 'blog.views.post_detail' id=post.id %}">{{ post.title|truncatechars:13 }}</a></li>
 					 {% endfor %}
 					 </ul>
 				 </div>
