@@ -1,9 +1,10 @@
+#encoding:utf-8
 from django.shortcuts import render,get_object_or_404
 from blog.models import Post,Links,Category
-from blog.app import app
+from blog.app import app,img
 from django.db.models import Q
 from blog.form import ContactForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.views.decorators.cache import cache_page
 from django.conf import settings
 # Create your views here.
@@ -35,14 +36,23 @@ def post_detail(request,id):
 def about(request):
 	return render(request,'blog/about.html',{});
 
+global code
+code=None
 def contact(request,**kwargs):
-	form = ContactForm(auto_id=False);
-	if request.POST:
-		form = ContactForm(request.POST);
-		if form.is_valid():
-			form.save();
-			return HttpResponseRedirect('/index.html');
-	return render(request,'blog/contact.html',{'form':form});
+	global code;
+	if request.method == 'POST':
+		if request.POST:
+			form = ContactForm(request.POST);
+			if form.is_valid() and code.lower() == str(form.img_code()).strip().lower():
+				form.save();
+				return HttpResponseRedirect('/index.html');
+			else:
+				return HttpResponse("<p>验证码不正确!</p>");
+	else:
+		form = ContactForm(auto_id=False);
+		code = img.Code();
+		img.Img(code);
+		return render(request,'blog/contact.html',{'form':form});
 
 def search(request):
 	links = Links.objects.all();
