@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
+    'django.contrib.sites',
     'blog',
     'DjangoUeditor',
 )
@@ -154,3 +156,4 @@ CACHES = {
 ###site url###
 SITE_URL='http://blog.sosolinux.com'
 SITE_NAME='Blog site'
+SITE_ID=1;

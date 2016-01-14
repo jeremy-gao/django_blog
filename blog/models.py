@@ -27,6 +27,9 @@ class Post(models.Model):
 	def __unicode__(self):
 		return self.title;
 
+	def get_absolute_url(self):
+		return "/post/{}/".format(self.id);
+		
 	class Meta:
 		verbose_name = u'博文管理';
 		verbose_name_plural = u'博文管理';

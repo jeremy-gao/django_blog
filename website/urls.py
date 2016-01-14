@@ -19,6 +19,20 @@ from django.conf.urls import patterns
 from blog import views
 from django.conf.urls.static import static
 from django.conf import settings
+##sitemaps###
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps.views import sitemap
+from blog.models import Post
+
+post_dict= {
+    'queryset': Post.objects.all(),
+    'date_field': 'published_date'
+}
+
+sitemaps = {
+    'blog': GenericSitemap(post_dict, priority=0.8),
+}
+####end####
 
 
 urlpatterns = [
@@ -34,4 +48,5 @@ urlpatterns = [
     url(r'^cname/(?P<cid>\d+)/$',views.index),
     url(r'^page/(?P<page>\d+)/cname/(?P<cid>\d+)/$',views.index),
     url(r'^ueditor/',include('DjangoUeditor.urls' )),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
